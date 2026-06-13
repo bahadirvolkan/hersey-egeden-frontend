@@ -118,6 +118,28 @@ body {
   background: #edf2fb;
 }
 
+.menu-bg-deco {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.menu-bg-deco img {
+  position: absolute;
+  user-select: none;
+}
+
+.masa-container {
+  position: relative;
+}
+
+.masa-container > *:not(.menu-bg-deco) {
+  position: relative;
+  z-index: 1;
+}
+
 .category-toggle {
   display: flex;
   justify-content: space-between;
