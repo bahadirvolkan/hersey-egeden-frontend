@@ -155,18 +155,6 @@ function Masa() {
 
   return (
     <div className="masa-container">
-      <div className="menu-bg-deco" aria-hidden="true">
-        <img src="/salad.png"    style={{ left:'2%',   top:'2%',   width:'90px',  transform:'rotate(-18deg)', opacity:0.07 }} alt="" />
-        <img src="/sandwich.png" style={{ right:'1%',  top:'6%',   width:'110px', transform:'rotate(14deg)',  opacity:0.07 }} alt="" />
-        <img src="/salad.png"    style={{ left:'55%',  top:'18%',  width:'75px',  transform:'rotate(25deg)',  opacity:0.06 }} alt="" />
-        <img src="/sandwich.png" style={{ left:'5%',   top:'32%',  width:'100px', transform:'rotate(-10deg)', opacity:0.07 }} alt="" />
-        <img src="/salad.png"    style={{ right:'4%',  top:'40%',  width:'85px',  transform:'rotate(-22deg)', opacity:0.06 }} alt="" />
-        <img src="/sandwich.png" style={{ left:'40%',  top:'52%',  width:'95px',  transform:'rotate(8deg)',   opacity:0.07 }} alt="" />
-        <img src="/salad.png"    style={{ left:'8%',   top:'65%',  width:'80px',  transform:'rotate(20deg)',  opacity:0.06 }} alt="" />
-        <img src="/sandwich.png" style={{ right:'2%',  top:'70%',  width:'105px', transform:'rotate(-16deg)', opacity:0.07 }} alt="" />
-        <img src="/salad.png"    style={{ left:'50%',  top:'82%',  width:'88px',  transform:'rotate(-8deg)',  opacity:0.06 }} alt="" />
-        <img src="/sandwich.png" style={{ left:'15%',  top:'90%',  width:'100px', transform:'rotate(18deg)',  opacity:0.07 }} alt="" />
-      </div>
       <div className="header">
         <img src="/logo.png" alt="Her Şey Ege'den" className="logo" />
         <span className="masa-badge">Masa {id}</span>
