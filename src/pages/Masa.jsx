@@ -220,7 +220,7 @@ function Masa() {
                 setCollapsedCategories(next);
               }}
             >
-              {menu.every(c => collapsedCategories[c.id]) ? 'Tümünü Aç' : 'Tümünü Kapat'}
+              {menu.every(c => collapsedCategories[c.id]) ? 'Tüm Kategoriler ▼' : 'Tüm Kategoriler ▲'}
             </button>
           </div>
           {menu.map(category => (
