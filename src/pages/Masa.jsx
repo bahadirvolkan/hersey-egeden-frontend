@@ -210,12 +210,18 @@ function Masa() {
       <div className="content">
         <div className="menu-section">
           <div className="menu-bg-deco">
-            <img src="/salad.png"    className="deco-img deco-1" alt="" />
-            <img src="/sandwich.png" className="deco-img deco-2" alt="" />
-            <img src="/salad.png"    className="deco-img deco-3" alt="" />
-            <img src="/sandwich.png" className="deco-img deco-4" alt="" />
-            <img src="/salad.png"    className="deco-img deco-5" alt="" />
-            <img src="/sandwich.png" className="deco-img deco-6" alt="" />
+            <img src="/salad.png"    className="deco-img deco-1"  alt="" />
+            <img src="/sandwich.png" className="deco-img deco-2"  alt="" />
+            <img src="/salad.png"    className="deco-img deco-3"  alt="" />
+            <img src="/sandwich.png" className="deco-img deco-4"  alt="" />
+            <img src="/salad.png"    className="deco-img deco-5"  alt="" />
+            <img src="/sandwich.png" className="deco-img deco-6"  alt="" />
+            <img src="/salad.png"    className="deco-img deco-7"  alt="" />
+            <img src="/sandwich.png" className="deco-img deco-8"  alt="" />
+            <img src="/salad.png"    className="deco-img deco-9"  alt="" />
+            <img src="/sandwich.png" className="deco-img deco-10" alt="" />
+            <img src="/salad.png"    className="deco-img deco-11" alt="" />
+            <img src="/sandwich.png" className="deco-img deco-12" alt="" />
           </div>
           <div className="menu-header">
             <h2>Menü</h2>
