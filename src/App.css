@@ -63,6 +63,35 @@ body {
 }
 
 /* Menu section */
+.menu-section {
+  position: relative;
+}
+
+.menu-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    url('/salad.png'),
+    url('/sandwich.png'),
+    url('/salad.png'),
+    url('/sandwich.png'),
+    url('/salad.png'),
+    url('/sandwich.png');
+  background-repeat: no-repeat;
+  background-size: 90px, 110px, 80px, 100px, 85px, 105px;
+  background-position:
+    2% 2%,
+    92% 5%,
+    5% 38%,
+    88% 45%,
+    3% 75%,
+    90% 80%;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .menu-section h2 {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
