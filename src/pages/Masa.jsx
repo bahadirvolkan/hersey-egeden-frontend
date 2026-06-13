@@ -27,7 +27,12 @@ function Masa() {
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/menu`)
-      .then(res => setMenu(res.data))
+      .then(res => {
+        setMenu(res.data);
+        const collapsed = {};
+        res.data.forEach(c => { collapsed[c.id] = true; });
+        setCollapsedCategories(collapsed);
+      })
       .catch(() => setError('Menü yüklenemedi'))
       .finally(() => setLoading(false));
 
@@ -204,7 +209,20 @@ function Masa() {
 
       <div className="content">
         <div className="menu-section">
-          <h2>Menü</h2>
+          <div className="menu-header">
+            <h2>Menü</h2>
+            <button
+              className="toggle-all-btn"
+              onClick={() => {
+                const allCollapsed = menu.every(c => collapsedCategories[c.id]);
+                const next = {};
+                menu.forEach(c => { next[c.id] = !allCollapsed; });
+                setCollapsedCategories(next);
+              }}
+            >
+              {menu.every(c => collapsedCategories[c.id]) ? 'Tümünü Aç' : 'Tümünü Kapat'}
+            </button>
+          </div>
           {menu.map(category => (
             <div key={category.id} className="category">
               <h3 className="category-toggle" onClick={() => toggleCategory(category.id)}>
