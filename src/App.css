@@ -1325,3 +1325,39 @@ body {
   color: #c8dce8;
   font-weight: 600;
 }
+
+/* Mobile floating cart bar */
+.mobile-cart-bar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-cart-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: #1a3a6b;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(26,58,107,0.35);
+    cursor: pointer;
+    z-index: 999;
+    font-weight: 700;
+  }
+  .mcb-count {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+  .mcb-label {
+    font-size: 15px;
+  }
+  .mcb-total {
+    font-size: 15px;
+  }
+}

@@ -295,6 +295,16 @@ function Masa() {
 
         </div>
       </div>
+
+      {cart.length > 0 && (
+        <div className="mobile-cart-bar" onClick={() => {
+          document.querySelector('.right-column')?.scrollIntoView({ behavior: 'smooth' });
+        }}>
+          <span className="mcb-count">{cart.reduce((s, i) => s + i.quantity, 0)} ürün</span>
+          <span className="mcb-label">Sepeti Gör</span>
+          <span className="mcb-total">{cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)} ₺</span>
+        </div>
+      )}
     </div>
   );
 }
