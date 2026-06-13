@@ -1450,3 +1450,17 @@ body {
     padding-bottom: 80px;
   }
 }
+
+/* Fly to cart animation */
+.fly-to-cart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: #1a3a6b;
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.55s ease;
+  opacity: 1;
+  transform: scale(1);
+}

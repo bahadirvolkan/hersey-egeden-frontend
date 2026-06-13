@@ -67,7 +67,23 @@ function Masa() {
     }
   };
 
-  const addToCart = (item) => {
+  const addToCart = (item, e) => {
+    if (e && window.innerWidth <= 768) {
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const fly = document.createElement('div');
+      fly.className = 'fly-to-cart';
+      fly.style.left = (rect.left + rect.width / 2 - 10) + 'px';
+      fly.style.top = (rect.top + rect.height / 2 - 10) + 'px';
+      document.body.appendChild(fly);
+      requestAnimationFrame(() => {
+        const targetX = window.innerWidth / 2 - rect.left - rect.width / 2;
+        const targetY = window.innerHeight - rect.top - rect.height / 2;
+        fly.style.transform = `translate(${targetX}px, ${targetY}px) scale(0.2)`;
+        fly.style.opacity = '0';
+      });
+      setTimeout(() => fly.remove(), 600);
+    }
     const existingItem = cart.find(c => c.id === item.id);
     if (existingItem) {
       setCart(cart.map(c => c.id === item.id ? { ...c, quantity: c.quantity + 1 } : c));
@@ -201,7 +217,7 @@ function Masa() {
                       {item.description && <p className="menu-item-desc">{item.description}</p>}
                       <div className="menu-item-footer">
                         <span className="price">{item.price} ₺</span>
-                        <button onClick={() => addToCart(item)}>+ Ekle</button>
+                        <button onClick={(e) => addToCart(item, e)}>+ Ekle</button>
                       </div>
                     </div>
                   </div>
