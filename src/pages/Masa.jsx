@@ -73,16 +73,16 @@ function Masa() {
       const rect = btn.getBoundingClientRect();
       const fly = document.createElement('div');
       fly.className = 'fly-to-cart';
-      fly.style.left = (rect.left + rect.width / 2 - 10) + 'px';
-      fly.style.top = (rect.top + rect.height / 2 - 10) + 'px';
+      const cx = rect.left + rect.width / 2 - 15;
+      const cy = rect.top + rect.height / 2 - 15;
+      fly.style.left = cx + 'px';
+      fly.style.top = cy + 'px';
+      const targetX = window.innerWidth / 2 - cx - 15;
+      const targetY = window.innerHeight - cy - 15;
+      fly.style.setProperty('--tx', targetX + 'px');
+      fly.style.setProperty('--ty', targetY + 'px');
       document.body.appendChild(fly);
-      requestAnimationFrame(() => {
-        const targetX = window.innerWidth / 2 - rect.left - rect.width / 2;
-        const targetY = window.innerHeight - rect.top - rect.height / 2;
-        fly.style.transform = `translate(${targetX}px, ${targetY}px) scale(0.2)`;
-        fly.style.opacity = '0';
-      });
-      setTimeout(() => fly.remove(), 600);
+      setTimeout(() => fly.remove(), 700);
     }
     const existingItem = cart.find(c => c.id === item.id);
     if (existingItem) {
