@@ -4,9 +4,11 @@ import io from 'socket.io-client';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
-const fmtTime = (dt) => dt
-  ? new Date(dt).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })
-  : null;
+const toUTC = (dt) => dt ? new Date(dt.includes('Z') ? dt : dt + 'Z') : null;
+const fmtTime = (dt) => {
+  const d = toUTC(dt);
+  return d ? d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }) : null;
+};
 
 function OrderTimeline({ order }) {
   const events = [
@@ -99,7 +101,7 @@ function KitchenScreen({ token, onLogout }) {
   };
 
   const getElapsed = (createdAt) => {
-    const diff = Math.floor((Date.now() - new Date(createdAt)) / 1000 / 60);
+    const diff = Math.floor((Date.now() - toUTC(createdAt)) / 1000 / 60);
     return diff < 1 ? 'Az önce' : `${diff} dk önce`;
   };
 
@@ -229,7 +231,7 @@ function KitchenScreen({ token, onLogout }) {
                         <div className="completed-order-meta">
                           <span className="completed-order-no">#{order.id}</span>
                           <span className="completed-order-time">
-                            {new Date(order.created_at).toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}
+                            {fmtTime(order.created_at)}
                           </span>
                           <span className={`completed-order-badge ${order.status}`}>
                             {order.status === 'completed' ? 'Tamamlandı' : 'Kapatıldı'}
