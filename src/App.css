@@ -87,7 +87,8 @@ body {
     88% 45%,
     3% 75%,
     90% 80%;
-  opacity: 0.08;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
 }
