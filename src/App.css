@@ -463,7 +463,7 @@ body {
 @media (max-width: 768px) {
   .content {
     grid-template-columns: 1fr;
-    padding: 0 12px;
+    padding: 0 8px;
   }
 
   .right-column {
@@ -477,6 +477,38 @@ body {
 
   .items {
     flex-direction: column;
+  }
+
+  .menu-item {
+    padding: 8px 4px;
+    gap: 8px;
+  }
+
+  .menu-item-img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .menu-item-body h4 {
+    font-size: 14px;
+  }
+
+  .menu-item-footer {
+    gap: 4px;
+  }
+
+  .menu-item .price {
+    font-size: 13px;
+  }
+
+  .menu-item button {
+    padding: 5px 11px;
+    font-size: 12px;
+  }
+
+  .category h3 {
+    font-size: 14px;
+    padding: 6px 0;
   }
 }
 
