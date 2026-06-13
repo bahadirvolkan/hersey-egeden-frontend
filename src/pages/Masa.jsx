@@ -20,6 +20,10 @@ function Masa() {
   const [tableClosed, setTableClosed] = useState(false);
   const [showBillConfirm, setShowBillConfirm] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [collapsedCategories, setCollapsedCategories] = useState({});
+
+  const toggleCategory = (id) =>
+    setCollapsedCategories(prev => ({ ...prev, [id]: !prev[id] }));
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/menu`)
@@ -203,8 +207,11 @@ function Masa() {
           <h2>Menü</h2>
           {menu.map(category => (
             <div key={category.id} className="category">
-              <h3>{category.name}</h3>
-              <div className="items">
+              <h3 className="category-toggle" onClick={() => toggleCategory(category.id)}>
+                {category.name}
+                <span className="category-arrow">{collapsedCategories[category.id] ? '▶' : '▼'}</span>
+              </h3>
+              {!collapsedCategories[category.id] && <div className="items">
                 {category.items && category.items.map(item => (
                   <div key={item.id} className="menu-item">
                     {item.image_url ? (
@@ -222,7 +229,7 @@ function Masa() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div>}
             </div>
           ))}
         </div>
