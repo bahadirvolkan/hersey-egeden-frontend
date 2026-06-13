@@ -19,6 +19,7 @@ function Masa() {
   const [billRequested, setBillRequested] = useState(false);
   const [tableClosed, setTableClosed] = useState(false);
   const [showBillConfirm, setShowBillConfirm] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/menu`)
@@ -296,13 +297,111 @@ function Masa() {
         </div>
       </div>
 
-      {cart.length > 0 && (
-        <div className="mobile-cart-bar" onClick={() => {
-          document.querySelector('.right-column')?.scrollIntoView({ behavior: 'smooth' });
-        }}>
-          <span className="mcb-count">{cart.reduce((s, i) => s + i.quantity, 0)} ürün</span>
-          <span className="mcb-label">Sepeti Gör</span>
-          <span className="mcb-total">{cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)} ₺</span>
+      {/* Mobile Sticky Bar */}
+      <div className="mobile-cart-bar" onClick={() => setDrawerOpen(true)}>
+        <span className="mcb-count">
+          {cart.length > 0
+            ? `${cart.reduce((s, i) => s + i.quantity, 0)} ürün`
+            : myOrders.length > 0 ? `${myOrders.length} sipariş` : 'Sepet'}
+        </span>
+        <span className="mcb-label">Adisyonu Gör</span>
+        <span className="mcb-total">
+          {cart.length > 0
+            ? `${cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)} ₺`
+            : myOrders.length > 0 ? `${getBillTotal()} ₺` : ''}
+        </span>
+      </div>
+
+      {/* Mobile Drawer */}
+      {drawerOpen && (
+        <div className="drawer-overlay" onClick={() => setDrawerOpen(false)}>
+          <div className="cart-drawer" onClick={e => e.stopPropagation()}>
+            <div className="drawer-header">
+              <h3>Adisyon — Masa {id}</h3>
+              <button className="drawer-close" onClick={() => setDrawerOpen(false)}>✕</button>
+            </div>
+
+            <div className="drawer-body">
+              {/* Sepet */}
+              <div className="drawer-section">
+                <h4>Sepet</h4>
+                {cart.length === 0 ? (
+                  <p className="drawer-empty">Sepet boş</p>
+                ) : (
+                  <>
+                    {cart.map(item => (
+                      <div key={item.id} className="cart-item">
+                        <div className="item-info">
+                          <h4>{item.name}</h4>
+                          <p>{item.price} ₺</p>
+                        </div>
+                        <div className="quantity-control">
+                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                          <span>{item.quantity}</span>
+                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                        </div>
+                        <button onClick={() => removeFromCart(item.id)} className="remove-btn">Sil</button>
+                      </div>
+                    ))}
+                    <div className="customer-note">
+                      <label>Not:</label>
+                      <textarea
+                        value={customerNote}
+                        onChange={e => setCustomerNote(e.target.value)}
+                        placeholder="Özel talep varsa yazınız..."
+                      />
+                    </div>
+                    <div className="total"><h3>Toplam: {getTotalPrice()} ₺</h3></div>
+                    <button className="submit-btn" onClick={() => { setDrawerOpen(false); setShowConfirm(true); }}>
+                      Siparişi Gönder
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* Siparişlerim */}
+              {myOrders.length > 0 && (
+                <div className="drawer-section">
+                  <div className="my-orders-header" onClick={() => setShowOrders(!showOrders)}>
+                    <h4>Siparişlerim ({myOrders.length})</h4>
+                    <span>{showOrders ? '▲' : '▼'}</span>
+                  </div>
+                  {showOrders && myOrders.map(order => (
+                    <div key={order.id} className="my-order-card">
+                      <div className="my-order-header">
+                        <span>#{order.id}</span>
+                        <span className={`my-order-status ${order.status}`}>
+                          {order.status === 'pending' ? '🍳 Hazırlanıyor' : '✅ Hazır'}
+                        </span>
+                        <span className="my-order-price">{order.total_price} ₺</span>
+                      </div>
+                      <ul className="my-order-items">
+                        {order.items.map((item, i) => (
+                          <li key={i}>
+                            <span>{item.quantity}x {item.name}</span>
+                            <span>{(item.price_at_purchase * item.quantity).toFixed(2)} ₺</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Hesap İste */}
+              {myOrders.length > 0 && (
+                <div className="drawer-section">
+                  {!billRequested ? (
+                    <button className="submit-btn hesap-btn" onClick={() => { setDrawerOpen(false); setShowBillConfirm(true); }}>
+                      Hesap İste
+                    </button>
+                  ) : (
+                    <div className="hesap-requested">Hesap İstendi — Kasaya yönlendiriliyorsunuz</div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
