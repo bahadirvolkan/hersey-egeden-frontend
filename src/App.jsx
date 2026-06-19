@@ -4,6 +4,7 @@ import Masa from './pages/Masa';
 import Order from './pages/Order';
 import KitchenLogin from './pages/KitchenLogin';
 import KitchenScreen from './pages/KitchenScreen';
+import Landing from './pages/Landing';
 import './App.css';
 
 function KitchenRoute() {
@@ -31,7 +32,7 @@ function App() {
           <Route path="/masa/:id" element={<Masa />} />
           <Route path="/order/:id" element={<Order />} />
           <Route path="/mutfak" element={<KitchenRoute />} />
-          <Route path="/" element={<h1>Her Şey Ege'den</h1>} />
+          <Route path="/" element={<Landing />} />
         </Routes>
       </div>
     </Router>
