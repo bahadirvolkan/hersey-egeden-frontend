@@ -65,12 +65,13 @@ export default function Landing() {
 
       {/* NAV */}
       <nav className="lp-nav">
-        <span className="lp-brand">Her Şey Ege'den</span>
+        <img src="/weblogo yatt.png" alt="Her Şey Ege'den" style={{ height: '36px', objectFit: 'contain' }} />
         <button className="lp-nav-btn" onClick={() => navigate('/masa/1')}>Menüyü Gör</button>
       </nav>
 
       {/* HERO */}
       <section className="lp-hero">
+        <img src="/weblogo yuvar.png" alt="Her Şey Ege'den" style={{ width: '140px', height: '140px', objectFit: 'contain', marginBottom: '24px' }} />
         <div className="lp-badge">Ege Mutfağı &bull; Doğal &bull; Sağlıklı</div>
         <h1 className="lp-h1">Her Şey<br /><em>Ege'den</em> Gelir</h1>
         <p className="lp-sub">
@@ -152,7 +153,11 @@ export default function Landing() {
         </button>
       </section>
 
-      <footer>&copy; 2026 Her Şey Ege'den. Tüm hakları saklıdır.</footer>
+      <footer>
+        <img src="/weblogo yatt.png" alt="Her Şey Ege'den" style={{ height: '28px', objectFit: 'contain', opacity: 0.5, marginBottom: '8px', display: 'block', margin: '0 auto 8px' }} />
+        &copy; 2026 Her Şey Ege'den. Tüm hakları saklıdır.
+        <div style={{ marginTop: '6px', fontSize: '11px', opacity: 0.4 }}>Powered by 3B Tech</div>
+      </footer>
     </div>
   );
 }
